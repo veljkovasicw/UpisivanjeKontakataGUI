@@ -23,7 +23,7 @@ import model.Posao;
 import model.Prijatelji;
 
 public class Scena2 extends BorderPane {
-
+	//Marko
 	private Label imeLabela;
 	private TextField imeTextField;
 	private HBox imeHbox;
