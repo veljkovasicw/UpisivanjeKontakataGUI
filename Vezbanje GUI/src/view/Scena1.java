@@ -21,7 +21,6 @@ import model.Prijatelji;
 
 public class Scena1 extends BorderPane {
 
-	
 	//top
 	//sa ovim comboboxom radi ali nam je potreban JEDINSTVENI COMBO BOX 
 	private ComboBox<String> combo;

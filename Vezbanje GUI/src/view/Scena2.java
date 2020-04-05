@@ -24,6 +24,7 @@ import model.Prijatelji;
 
 public class Scena2 extends BorderPane {
 	//Marko
+	//dodao sam jos jedan komentar za brech
 	private Label imeLabela;
 	private TextField imeTextField;
 	private HBox imeHbox;
