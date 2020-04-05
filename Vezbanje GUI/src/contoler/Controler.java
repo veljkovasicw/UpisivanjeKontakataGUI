@@ -27,8 +27,7 @@ public class Controler {
 	// da ima public metodu init() - kojom pravimo objekat i povecavamo brojac za 1
 	// kada je staticki brojac >=1 ne moze da se napravi objekat
 	// pristupas mu preko getClass
-	
-	
+
 	/*
 	 * private static Controller instance = null;
 	 * 
@@ -179,7 +178,7 @@ public class Controler {
 		getScena2().getEmailTextField().clear();
 		getScena2().getBrojeviTextField().clear();
 		getScena2().getListaBrojeva().getItems().clear();
-
+		getScena1().getListaImenaIPrezimena().getItems().clear();
 		/*
 		 * 
 		 * scena1.getCombo().setItems(grupeLista);
@@ -204,9 +203,8 @@ public class Controler {
 
 	}
 
-	
-	//ova metoda ne radi jer nam ne radi GrupeKontakata 
-	
+	// ova metoda ne radi jer nam ne radi GrupeKontakata
+
 	public void prikaziBtn() {
 
 		// ova metoda nije dobra, mora da uzima vrednost iz comboboxa i da prolista sve
@@ -215,35 +213,52 @@ public class Controler {
 		// ArrayList<String> listaOsoba =
 		// getScena1().getListaImenaIPrezimena().getTableViewValues(scena1.getListaImenaIPrezimena());
 
-		
-		for (Kontakti kontakt :getScena2().getCombo().getKontakti() ) {
-			
-			System.out.println(kontakt.getKontakti().size());
-			
-		}
-		
-		/*
-		String kojiTrazim = getScena2().getCombo().getValue().toString();
-
 		ObservableList<Osoba> listaImenaIprezimena = FXCollections.observableArrayList();
 
-		for (int i = 0; i < getScena2().getCombo().getKontakti().size(); i++) {
+		for (Kontakti kontakt : getScena2().getCombo().getKontakti()) {
 
-			Kontakti kontakt = getScena2().getCombo().getKontakti().get(i);
-
-			if (kontakt.toString().equals(kojiTrazim)) {
-
-				listaImenaIprezimena.add(kontakt.getKontakti().get(i));
-
-				System.out.println(kontakt.getKontakti().size());
-
+			System.out.println(kontakt.getKontakti().size());
+			
+			
+			/*
+			 * switch case ovde treba
+			 */
+			
+			
+			for (Osoba osoba : kontakt.getKontakti()) {
+				listaImenaIprezimena.add(osoba);
 			}
 
 		}
 
 		scena1.getListaImenaIPrezimena().setItems(listaImenaIprezimena);
+		
+		
 
-	}*/
+		/*
+		 * String kojiTrazim = getScena2().getCombo().getValue().toString();
+		 * 
+		 * ObservableList<Osoba> listaImenaIprezimena =
+		 * FXCollections.observableArrayList();
+		 * 
+		 * for (int i = 0; i < getScena2().getCombo().getKontakti().size(); i++) {
+		 * 
+		 * Kontakti kontakt = getScena2().getCombo().getKontakti().get(i);
+		 * 
+		 * if (kontakt.toString().equals(kojiTrazim)) {
+		 * 
+		 * listaImenaIprezimena.add(kontakt.getKontakti().get(i));
+		 * 
+		 * System.out.println(kontakt.getKontakti().size());
+		 * 
+		 * }
+		 * 
+		 * }
+		 * 
+		 * scena1.getListaImenaIPrezimena().setItems(listaImenaIprezimena);
+		 * 
+		 * }
+		 */
 	}
 
 }

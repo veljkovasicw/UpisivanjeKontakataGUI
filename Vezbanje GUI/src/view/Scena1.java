@@ -74,6 +74,13 @@ public class Scena1 extends BorderPane {
 			kontakti.add(Prijatelji.getInstance());
 			kontakti.add(Posao.getInstance());
 			
+			// ovo je je lista svih kontakta iz porodice, posao , prijatelji   		
+			//odavde izvlacimo vrednosti koje ispisujemo u tabelu
+			
+		/* kontakti.get(0).getKontakti() */
+			
+			// ovo je je lista svih kontakta iz porodice, posao , prijatelji  
+			
 			
 			grupeLista = FXCollections.observableArrayList(kontakti.get(0).toString() + " - " +kontakti.get(0).getKontakti().size(),kontakti.get(1).toString()+ " - " +kontakti.get(1).getKontakti().size(),kontakti.get(2).toString()+ " - " +kontakti.get(2).getKontakti().size() );
 			

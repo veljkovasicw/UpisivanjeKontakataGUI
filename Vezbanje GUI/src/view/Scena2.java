@@ -49,7 +49,7 @@ public class Scena2 extends BorderPane {
 	private ListaBrojeva listaBrojeva;
 
 	private Label grupeLabel;
-	private GrupeKontaktaCombo combo2;
+	private GrupeKontaktaCombo combo2= GrupeKontaktaCombo.getInstance();;
 
 	private HBox grupeHbox;
 
@@ -62,27 +62,32 @@ public class Scena2 extends BorderPane {
 		imeLabela = new Label("Ime: ");
 		imeTextField = new TextField();
 		imeHbox = new HBox();
+		imeHbox.setPadding(new Insets(10,25,10,25));
 		imeHbox.getChildren().addAll(imeLabela, imeTextField);
 
 		prezimeLabela = new Label("Prezime: ");
 		prezimeTextField = new TextField();
 		prezimeHbox = new HBox();
+		prezimeHbox.setPadding(new Insets(10,25,10,25));
 		prezimeHbox.getChildren().addAll(prezimeLabela, prezimeTextField);
 
 		adresaLabela = new Label("Adresa: ");
 		adresaTextField = new TextField();
 		adresaHbox = new HBox();
+		adresaHbox.setPadding(new Insets(10,25,10,25));
 		adresaHbox.getChildren().addAll(adresaLabela, adresaTextField);
 
 		emailLabela = new Label("Email: ");
 		emailTextField = new TextField();
 		emailHbox = new HBox();
+		emailHbox.setPadding(new Insets(10,25,10,25));
 		emailHbox.getChildren().addAll(emailLabela, emailTextField);
 
 		brojeviLabela = new Label("Brojevi telefona: ");
 		brojeviTextField = new TextField();
 		dodajBtn = new Button("Dodaj");
 		brojeviHbox = new HBox();
+		brojeviHbox.setPadding(new Insets(10,25,10,25));
 		brojeviHbox.getChildren().addAll(brojeviLabela, brojeviTextField, dodajBtn);
 
 		listaBrojeva = new ListaBrojeva();
@@ -92,18 +97,19 @@ public class Scena2 extends BorderPane {
 		//obrati paznju ovde 
 	
 		
-		combo2 = GrupeKontaktaCombo.getInstance();
 		
 		
 		
 		// do ovde 
 		
 		grupeHbox = new HBox();
+		grupeHbox.setPadding(new Insets(10,25,10,25));
 		grupeHbox.getChildren().addAll(grupeLabel, combo2);
 
 		sacuvajBtn = new Button("Sacuvaj");
 
 		mainVBox = new VBox();
+		mainVBox.setPadding(new Insets(10,25,10,25));
 
 		imeHbox.setAlignment(Pos.CENTER);
 
