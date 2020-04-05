@@ -29,8 +29,6 @@ public class Controler {
 	// pristupas mu preko getClass
 	
 	
-	// PROMENA
-	
 	/*
 	 * private static Controller instance = null;
 	 * 
