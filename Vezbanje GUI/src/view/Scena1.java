@@ -21,6 +21,7 @@ import model.Prijatelji;
 
 public class Scena1 extends BorderPane {
 
+	//Veljko branch promena
 	
 	//top
 	//sa ovim comboboxom radi ali nam je potreban JEDINSTVENI COMBO BOX 
