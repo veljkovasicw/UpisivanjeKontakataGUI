@@ -27,7 +27,10 @@ public class Controler {
 	// da ima public metodu init() - kojom pravimo objekat i povecavamo brojac za 1
 	// kada je staticki brojac >=1 ne moze da se napravi objekat
 	// pristupas mu preko getClass
-
+	
+	
+	// PROMENA
+	
 	/*
 	 * private static Controller instance = null;
 	 * 
