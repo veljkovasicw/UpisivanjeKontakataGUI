@@ -1,22 +1,15 @@
 package application;
 
-import java.sql.Savepoint;
-
 import contoler.Controler;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Porodica;
-import model.Posao;
-import model.Prijatelji;
 import model.DodajBrojBtnEvent;
 import view.Scena1;
 import view.Scena2;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 
 public class Main extends Application {
 	@Override
@@ -82,6 +75,15 @@ public class Main extends Application {
 					
 					primaryStage.setScene(scene1);
 					primaryStage.show();
+				}
+			});
+			
+			prvaScena.getDetaljnijeBtn().setOnAction(new EventHandler<ActionEvent>() {
+
+				@Override
+				public void handle(ActionEvent event) {
+					Controler.getInstance().prikaziDetaljeBtn();
+					
 				}
 			});
 

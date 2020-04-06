@@ -213,52 +213,65 @@ public class Controler {
 		// ArrayList<String> listaOsoba =
 		// getScena1().getListaImenaIPrezimena().getTableViewValues(scena1.getListaImenaIPrezimena());
 
-		ObservableList<Osoba> listaImenaIprezimena = FXCollections.observableArrayList();
-
+		ObservableList<Osoba> listaImenaIprezimena1 = FXCollections.observableArrayList();
+		
+		ObservableList<Osoba> listaImenaIprezimena2 = FXCollections.observableArrayList();
+		ObservableList<Osoba> listaImenaIprezimena3 = FXCollections.observableArrayList();
+		
+		
 		for (Kontakti kontakt : getScena2().getCombo().getKontakti()) {
 
 			System.out.println(kontakt.getKontakti().size());
-			
-			
-			/*
-			 * switch case ovde treba
-			 */
-			
-			
-			for (Osoba osoba : kontakt.getKontakti()) {
-				listaImenaIprezimena.add(osoba);
-			}
+			System.out.println(kontakt.toString());
 
+		if(kontakt.toString().equals("Porodica")){
+
+				for (Osoba osoba : kontakt.getKontakti()) {
+					listaImenaIprezimena1.add(osoba);
+				}
+			}
+		
+		else if (kontakt.toString().equals("Prijatelji")){
+
+			for (Osoba osoba : kontakt.getKontakti()) {
+				
+				listaImenaIprezimena2.add(osoba);
+			}
+		}
+		else if(kontakt.toString().equals("Posao")){
+
+			for (Osoba osoba : kontakt.getKontakti()) {
+				listaImenaIprezimena3.add(osoba);
+			}
+		}
+		
 		}
 
-		scena1.getListaImenaIPrezimena().setItems(listaImenaIprezimena);
+		
+		if(scena1.getCombo().getSelectionModel().getSelectedItem().contains("Por")) {
+			scena1.getListaImenaIPrezimena().setItems(listaImenaIprezimena1);
+		}
+		if(scena1.getCombo().getSelectionModel().getSelectedItem().contains("Pri")) {
+			scena1.getListaImenaIPrezimena().setItems(listaImenaIprezimena2);
+		}
+		if(scena1.getCombo().getSelectionModel().getSelectedItem().contains("Pos")) {
+			scena1.getListaImenaIPrezimena().setItems(listaImenaIprezimena3);
+		}
+
 		
 		
 
-		/*
-		 * String kojiTrazim = getScena2().getCombo().getValue().toString();
-		 * 
-		 * ObservableList<Osoba> listaImenaIprezimena =
-		 * FXCollections.observableArrayList();
-		 * 
-		 * for (int i = 0; i < getScena2().getCombo().getKontakti().size(); i++) {
-		 * 
-		 * Kontakti kontakt = getScena2().getCombo().getKontakti().get(i);
-		 * 
-		 * if (kontakt.toString().equals(kojiTrazim)) {
-		 * 
-		 * listaImenaIprezimena.add(kontakt.getKontakti().get(i));
-		 * 
-		 * System.out.println(kontakt.getKontakti().size());
-		 * 
-		 * }
-		 * 
-		 * }
-		 * 
-		 * scena1.getListaImenaIPrezimena().setItems(listaImenaIprezimena);
-		 * 
-		 * }
-		 */
+	}
+	
+	
+	public void prikaziDetaljeBtn() {
+		
+	Osoba izabranaOsoba = 	getScena1().getListaImenaIPrezimena().getSelectionModel().getSelectedItem();
+	
+	getScena1().getImePrezimeTextField().setText(izabranaOsoba.getImeIPrezime());;
+	getScena1().getAdresaTextField().setText(izabranaOsoba.getAdresa());
+	getScena1().getEmailTextField().setText(izabranaOsoba.getEmail());
+	
 	}
 
 }
