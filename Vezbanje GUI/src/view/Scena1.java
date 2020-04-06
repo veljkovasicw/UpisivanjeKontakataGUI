@@ -21,11 +21,8 @@ import model.Prijatelji;
 
 public class Scena1 extends BorderPane {
 
-<<<<<<< HEAD
-=======
 	//Veljko branch promena
 	
->>>>>>> refs/remotes/origin/Veljko-branch
 	//top
 	//sa ovim comboboxom radi ali nam je potreban JEDINSTVENI COMBO BOX 
 	private ComboBox<String> combo;
@@ -88,7 +85,7 @@ public class Scena1 extends BorderPane {
 		
 		comboBox = GrupeKontaktaCombo.getInstance();
 	
-		topHBox.getChildren().addAll(combo, prikaziBtn);
+		topHBox.getChildren().addAll(comboBox, prikaziBtn);
 	
 		
 		

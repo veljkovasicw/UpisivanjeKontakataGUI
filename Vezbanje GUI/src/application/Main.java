@@ -33,7 +33,7 @@ public class Main extends Application {
 			Scena1 prvaScena = Controler.getInstance().getScena1();
 
 			
-			Scene scene2 = new Scene(drugaScena, 400, 400);
+			Scene scene2 = new Scene(drugaScena, 500, 500);
 			
 			Scene scene1 = new Scene(prvaScena, 1000, 600);
 

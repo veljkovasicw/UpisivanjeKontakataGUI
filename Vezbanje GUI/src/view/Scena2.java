@@ -14,6 +14,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Brojevi;
@@ -22,110 +24,96 @@ import model.Porodica;
 import model.Posao;
 import model.Prijatelji;
 
-public class Scena2 extends BorderPane {
-	//Marko
-	//dodao sam jos jedan komentar za brech
+public class Scena2 extends GridPane {
+
 	private Label imeLabela;
 	private TextField imeTextField;
-	private HBox imeHbox;
 
 	private Label prezimeLabela;
 	private TextField prezimeTextField;
-	private HBox prezimeHbox;
 
 	private Label adresaLabela;
 	private TextField adresaTextField;
-	private HBox adresaHbox;
 
 	private Label emailLabela;
 	private TextField emailTextField;
-	private HBox emailHbox;
 
 	private Label brojeviLabela;
 	private TextField brojeviTextField;
 	private Button dodajBtn;
-	private HBox brojeviHbox;
-
+	
 	private ListaBrojeva listaBrojeva;
 
 	private Label grupeLabel;
-	private GrupeKontaktaCombo combo2;
-
-	private HBox grupeHbox;
-
+	private GrupeKontaktaCombo combo2 = GrupeKontaktaCombo.getInstance();
 	private Button sacuvajBtn;
 
-	private VBox mainVBox;
-
 	public Scena2() {
-
+		setPadding(new Insets(15, 40, 15, 30));
+        setVgap(8);
+        setHgap(10);
+                //prvi red
 		imeLabela = new Label("Ime: ");
 		imeTextField = new TextField();
-		imeHbox = new HBox();
-		imeHbox.getChildren().addAll(imeLabela, imeTextField);
-
+		setConstraints(imeLabela, 0, 0);
+		setConstraints(imeTextField ,1, 0);
+		
+		
+                //drugi red
 		prezimeLabela = new Label("Prezime: ");
 		prezimeTextField = new TextField();
-		prezimeHbox = new HBox();
-		prezimeHbox.getChildren().addAll(prezimeLabela, prezimeTextField);
-
+        setConstraints(prezimeLabela, 0, 1);
+        setConstraints(prezimeTextField, 1, 1);
+        
+                //treci red
 		adresaLabela = new Label("Adresa: ");
 		adresaTextField = new TextField();
-		adresaHbox = new HBox();
-		adresaHbox.getChildren().addAll(adresaLabela, adresaTextField);
-
+        setConstraints(adresaLabela, 0 , 2);
+        setConstraints(adresaTextField, 1, 2);
+        
+                //cetvrti red
 		emailLabela = new Label("Email: ");
 		emailTextField = new TextField();
-		emailHbox = new HBox();
-		emailHbox.getChildren().addAll(emailLabela, emailTextField);
-
+        setConstraints(emailLabela, 0, 3);
+        setConstraints(emailTextField, 1, 3);
+        
+                //peti red
 		brojeviLabela = new Label("Brojevi telefona: ");
 		brojeviTextField = new TextField();
 		dodajBtn = new Button("Dodaj");
-		brojeviHbox = new HBox();
-		brojeviHbox.getChildren().addAll(brojeviLabela, brojeviTextField, dodajBtn);
-
+        setConstraints(brojeviLabela, 0, 4);
+        setConstraints(brojeviTextField, 1, 4);
+        setConstraints(dodajBtn, 2, 4);
+        
+                //sesti red
 		listaBrojeva = new ListaBrojeva();
-
+        setConstraints(listaBrojeva, 1, 5);
+                //sedmi red 
 		grupeLabel = new Label("Grupe: ");
+                    //obrati paznju ovde 
 		
-		//obrati paznju ovde 
-	
-		
-		combo2 = GrupeKontaktaCombo.getInstance();
-		
-		
-		
-		// do ovde 
-		
-		grupeHbox = new HBox();
-		grupeHbox.getChildren().addAll(grupeLabel, combo2);
-
+                    // do ovde 
+		setConstraints(grupeLabel, 0, 6);
+        setConstraints(combo2, 1, 6);
+                //osmi Red
 		sacuvajBtn = new Button("Sacuvaj");
-
-		mainVBox = new VBox();
-
-		imeHbox.setAlignment(Pos.CENTER);
-
-		prezimeHbox.setAlignment(Pos.CENTER);
-
-		adresaHbox.setAlignment(Pos.CENTER);
-
-		emailHbox.setAlignment(Pos.CENTER);
-
-		brojeviHbox.setAlignment(Pos.CENTER);
-
-		grupeHbox.setAlignment(Pos.CENTER);
-
-		sacuvajBtn.setAlignment(Pos.CENTER);
-
-		mainVBox.getChildren().addAll(imeHbox, prezimeHbox, adresaHbox, emailHbox, brojeviHbox, listaBrojeva, grupeHbox,
-				sacuvajBtn);
-
-		setAlignment(mainVBox, Pos.CENTER);
-		setMargin(mainVBox, new Insets(12, 12, 12, 12));
-		setCenter(mainVBox);
-
+        setConstraints(sacuvajBtn, 1, 7);
+       
+        ColumnConstraints col1 = new ColumnConstraints();
+        col1.setPercentWidth(25);
+        ColumnConstraints col2 = new ColumnConstraints();
+        col2.setPercentWidth(60);
+        ColumnConstraints col3 = new ColumnConstraints();
+        col3.setPercentWidth(15);
+            
+        getColumnConstraints().addAll(col1,col2,col3);
+        
+            	//na kraju Povezao sve elemente getChildAll
+        getChildren().addAll(imeLabela,imeTextField,prezimeLabela,prezimeTextField,
+        		adresaLabela,adresaTextField,emailLabela,emailTextField,brojeviLabela,
+                brojeviTextField,dodajBtn,listaBrojeva,grupeLabel,combo2,sacuvajBtn); 
+                
+                
 	}
 
 	public Label getImeLabela() {
@@ -144,14 +132,6 @@ public class Scena2 extends BorderPane {
 		this.imeTextField = imeTextField;
 	}
 
-	public HBox getImeHbox() {
-		return imeHbox;
-	}
-
-	public void setImeHbox(HBox imeHbox) {
-		this.imeHbox = imeHbox;
-	}
-
 	public Label getPrezimeLabela() {
 		return prezimeLabela;
 	}
@@ -167,15 +147,7 @@ public class Scena2 extends BorderPane {
 	public void setPrezimeTextField(TextField prezimeTextField) {
 		this.prezimeTextField = prezimeTextField;
 	}
-
-	public HBox getPrezimeHbox() {
-		return prezimeHbox;
-	}
-
-	public void setPrezimeHbox(HBox prezimeHbox) {
-		this.prezimeHbox = prezimeHbox;
-	}
-
+        
 	public Label getAdresaLabela() {
 		return adresaLabela;
 	}
@@ -192,16 +164,6 @@ public class Scena2 extends BorderPane {
 		this.adresaTextField = adresaTextField;
 	}
 
-	public HBox getAdresaHbox() {
-		return adresaHbox;
-	}
-
-	public void setAdresaHbox(HBox adresaHbox) {
-		this.adresaHbox = adresaHbox;
-	}
-
-
-
 	public Label getEmailLabela() {
 		return emailLabela;
 	}
@@ -216,14 +178,6 @@ public class Scena2 extends BorderPane {
 
 	public void setEmailTextField(TextField emailTextField) {
 		this.emailTextField = emailTextField;
-	}
-
-	public HBox getEmailHbox() {
-		return emailHbox;
-	}
-
-	public void setEmailHbox(HBox emailHbox) {
-		this.emailHbox = emailHbox;
 	}
 
 	public Label getBrojeviLabela() {
@@ -250,14 +204,6 @@ public class Scena2 extends BorderPane {
 		this.dodajBtn = dodajBtn;
 	}
 
-	public HBox getBrojeviHbox() {
-		return brojeviHbox;
-	}
-
-	public void setBrojeviHbox(HBox brojeviHbox) {
-		this.brojeviHbox = brojeviHbox;
-	}
-	
 	public ListaBrojeva getListaBrojeva() {
 		return listaBrojeva;
 	}
@@ -283,14 +229,6 @@ public class Scena2 extends BorderPane {
 		this.combo2 = combo;
 	}
 
-	public HBox getGrupeHbox() {
-		return grupeHbox;
-	}
-
-	public void setGrupeHbox(HBox grupeHbox) {
-		this.grupeHbox = grupeHbox;
-	}
-
 	public Button getSacuvajBtn() {
 		return sacuvajBtn;
 	}
@@ -298,14 +236,6 @@ public class Scena2 extends BorderPane {
 	public void setSacuvajBtn(Button sacuvajBtn) {
 		this.sacuvajBtn = sacuvajBtn;
 	}
-
-	public VBox getMainVBox() {
-		return mainVBox;
-	}
-
-	public void setMainVBox(VBox mainVBox) {
-		this.mainVBox = mainVBox;
-	}
-	
 	
 }
+
