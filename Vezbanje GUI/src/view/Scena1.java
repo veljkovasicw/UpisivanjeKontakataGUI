@@ -2,8 +2,12 @@ package view;
 
 import java.util.ArrayList;
 
+import com.sun.xml.internal.ws.dump.LoggingDumpTube.Position;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -11,6 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Kontakti;
@@ -20,8 +25,6 @@ import model.Posao;
 import model.Prijatelji;
 
 public class Scena1 extends BorderPane {
-
-	//Veljko branch promena
 	
 	//top
 	//sa ovim comboboxom radi ali nam je potreban JEDINSTVENI COMBO BOX 
@@ -42,6 +45,7 @@ public class Scena1 extends BorderPane {
 	private Button kreirajBtn;
 	
 	//right
+	private GridPane gridSaElementima;
 	private Label imePrezimeLabela;
 	private TextField imePrezimeTextField;
 	private HBox imePrezimeHbox;
@@ -62,18 +66,61 @@ public class Scena1 extends BorderPane {
 
 	public Scena1() {
 		
+		
+		setTop(getHboxTop());
+		listaImenaIPrezimena= new ListaImenaIPrezimena();
+		listaImenaIPrezimena.setPrefSize(300, 200);
+		listaImenaIPrezimena.setMaxHeight(400);
+		setMargin(listaImenaIPrezimena, new Insets(0, 20, 20, 20));
+		setLeft(listaImenaIPrezimena);
+		
+		detaljnijeBtn = new Button("Prikazi detaljnije");
+		setMargin(detaljnijeBtn, new Insets(30, 30, 30, 30));
+		setCenter(detaljnijeBtn);
+		
+		setMargin(getGridPaneRight(), new Insets(10, 10, 10, 20));
+		setAlignment(getGridPaneRight(), Pos.CENTER);
+		setRight(getGridPaneRight());
+		
+		kreirajBtn= new Button("Kreiraj novi");
+		
+		setMargin(kreirajBtn, new Insets(10, 10, 10, 10));
+		setAlignment(kreirajBtn, Pos.BOTTOM_CENTER);
+		setBottom(kreirajBtn);
+//		imePrezimeHbox= new HBox();
+//		imePrezimeHbox.getChildren().add(imePrezimeLabela);
+//		imePrezimeHbox.getChildren().add(imePrezimeTextField);
+		
+		
+//		adresaHbox= new HBox();
+//		adresaHbox.getChildren().addAll(adresaLabela, adresaTextField);
+		
+		
+//		emailHbox= new HBox();
+//		emailHbox.getChildren().addAll(emailLabela, emailTextField);
+		
+		
+		
+//		brojeviHbox= new HBox();
+//		brojeviHbox.getChildren().addAll(brojeviLabela,brojeviTextArea);
+		
+		
+//		rightVBox= new VBox();
+//		
+//		rightVBox.getChildren().addAll(imePrezimeHbox,adresaHbox,emailHbox,brojeviHbox);
+//		setRight(rightVBox);
+
+	}
+	public HBox getHboxTop() {
 		prikaziBtn = new Button("Prikazi");
 		
 		  ArrayList<Kontakti> kontakti= new ArrayList<Kontakti>();
 		
 		  ObservableList<String> grupeLista ;
-		
-	
 			
 			kontakti.add(Porodica.getInstance());
 			kontakti.add(Prijatelji.getInstance());
 			kontakti.add(Posao.getInstance());
-			
 			
 			grupeLista = FXCollections.observableArrayList(kontakti.get(0).toString() + " - " +kontakti.get(0).getKontakti().size(),kontakti.get(1).toString()+ " - " +kontakti.get(1).getKontakti().size(),kontakti.get(2).toString()+ " - " +kontakti.get(2).getKontakti().size() );
 			
@@ -82,53 +129,57 @@ public class Scena1 extends BorderPane {
 		combo.setValue(grupeLista.get(0));
 		
 		topHBox = new HBox();
+		topHBox.setMargin(prikaziBtn, new Insets(20, 20, 10, 5));
+		topHBox.setMargin(combo, new Insets(20, 5, 10, 20));
 		
-		comboBox = GrupeKontaktaCombo.getInstance();
+	//	comboBox = GrupeKontaktaCombo.getInstance();
 	
-		topHBox.getChildren().addAll(comboBox, prikaziBtn);
+		topHBox.getChildren().addAll(combo, prikaziBtn);
 	
-		
-		
-		setTop(topHBox);
-		
-		listaImenaIPrezimena= new ListaImenaIPrezimena();
-		setLeft(listaImenaIPrezimena);
-		
-		detaljnijeBtn = new Button("Prikazi detaljnije");
-		setCenter(detaljnijeBtn);
-		
-		kreirajBtn= new Button("Kreiraj novi");
-		setBottom(kreirajBtn);
-		
+		return topHBox;
+	}
+	public GridPane getGridPaneRight() {
+		gridSaElementima = new GridPane();
+		gridSaElementima.setPadding(new Insets(15, 15, 15, 15));
+		gridSaElementima.setVgap(8);
+		gridSaElementima.setHgap(10);
+	
+		//1 red
 		imePrezimeLabela = new Label("Ime i prezime: ");
 		imePrezimeTextField = new TextField();
-		imePrezimeHbox= new HBox();
-		imePrezimeHbox.getChildren().add(imePrezimeLabela);
-		imePrezimeHbox.getChildren().add(imePrezimeTextField);
+		imePrezimeTextField.setPrefWidth(200);
+		imePrezimeTextField.setMaxWidth(200);
+		gridSaElementima.setConstraints(imePrezimeLabela, 0, 0);
+		gridSaElementima.setConstraints(imePrezimeTextField, 1, 0);
 		
+		//2red
 		adresaLabela = new Label("Adresa: ");
 		adresaTextField= new TextField();
-		adresaHbox= new HBox();
-		adresaHbox.getChildren().addAll(adresaLabela, adresaTextField);
-		
+		adresaTextField.setPrefWidth(200);
+		adresaTextField.setMaxWidth(200);
+		gridSaElementima.setConstraints(adresaLabela, 0, 1);
+		gridSaElementima.setConstraints(adresaTextField, 1, 1);
+		//3red
 		emailLabela = new Label("Email: ");
 		emailTextField = new TextField();
-		emailHbox= new HBox();
-		emailHbox.getChildren().addAll(emailLabela, emailTextField);
-		
-		
+		emailTextField.setPrefWidth(200);
+		emailTextField.setMaxWidth(200);
+		gridSaElementima.setConstraints(emailLabela, 0, 2);
+		gridSaElementima.setConstraints(emailTextField, 1, 2);
+		//4red
 		brojeviLabela = new Label("Brojevi telefona: ");
+		
 		brojeviTextArea = new TextArea();
-		brojeviHbox= new HBox();
-		brojeviHbox.getChildren().addAll(brojeviLabela,brojeviTextArea);
+		brojeviTextArea.setPrefRowCount(5);
+		brojeviTextArea.setPrefWidth(200);
+		gridSaElementima.setConstraints(brojeviLabela, 0, 3);
+		gridSaElementima.setConstraints(brojeviTextArea, 1, 3);
 		
+		gridSaElementima.getChildren().addAll(imePrezimeLabela,imePrezimeTextField,adresaLabela,adresaTextField,
+				emailLabela,emailTextField,brojeviLabela,brojeviTextArea);
 		
-		rightVBox= new VBox();
-		
-		rightVBox.getChildren().addAll(imePrezimeHbox,adresaHbox,emailHbox,brojeviHbox);
-		setRight(rightVBox);
-
-	}
+		return gridSaElementima;
+	} 
 
 	public GrupeKontaktaCombo getComboBox() {
 		return comboBox;
