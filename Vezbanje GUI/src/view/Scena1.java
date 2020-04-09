@@ -93,7 +93,7 @@ public class Scena1 extends BorderPane {
 		comboBox = GrupeKontaktaCombo.getInstance();
 	
 		topHBox.getChildren().addAll(combo, prikaziBtn);
-	
+		
 		
 		
 		setTop(topHBox);

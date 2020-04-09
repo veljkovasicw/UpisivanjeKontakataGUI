@@ -1,21 +1,15 @@
 package contoler;
 
-import java.util.ArrayList;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import model.Brojevi;
-import model.Kontakti;
-import model.Osoba;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import model.DodajBrojBtnEvent;
 import model.Porodica;
 import model.Posao;
 import model.Prijatelji;
+import model.PrikaziBtnEvent;
+import model.PrikaziDetaljeBtnEvent;
+import model.SacuvajBtnEvent;
 import view.GrupeKontaktaCombo;
-import view.ListaBrojeva;
 import view.Scena1;
 import view.Scena2;
 
@@ -49,15 +43,32 @@ public class Controler {
 	private Porodica porodica;
 	private Posao posao;
 	private Prijatelji prijatelji;
+	
+	private DodajBrojBtnEvent dodajBtnEvent;
+	private PrikaziBtnEvent prikaziBtnEvent;
+	private PrikaziDetaljeBtnEvent prikaziDetaljnijeBtnEvent;
+	private SacuvajBtnEvent sacuvajBtnEvent;
+	
+	private Stage primaryStage = new Stage();
+	private Scene sceneOne;
+	private Scene sceneTwo;
+
+	
 
 	private Controler() {
 
 		scena1 = new Scena1();
 		scena2 = new Scena2();
+		sceneOne = new Scene(scena1, 1000, 600);
+		sceneTwo =  new Scene(scena2, 400, 400);
 		porodica = Porodica.getInstance();
 		posao = Posao.getInstance();
 		prijatelji = Prijatelji.getInstance();
 		grupeKontaktaCombo = GrupeKontaktaCombo.getInstance();
+		dodajBtnEvent = new DodajBrojBtnEvent(scena2.getDodajBtn(), scena2.getBrojeviTextField(), scena2.getListaBrojeva());
+		prikaziBtnEvent = new PrikaziBtnEvent(scena2.getCombo(), scena1.getCombo(), scena1.getListaImenaIPrezimena());
+		prikaziDetaljnijeBtnEvent= new PrikaziDetaljeBtnEvent(scena1.getListaImenaIPrezimena(), scena1.getImePrezimeTextField(),scena1.getAdresaTextField(), scena1.getEmailTextField(), scena1.getBrojeviTextArea());
+		sacuvajBtnEvent = new SacuvajBtnEvent(scena2.getImeTextField(), scena2.getPrezimeTextField(), scena2.getAdresaTextField(), scena2.getEmailTextField(), scena2.getBrojeviTextField(), scena2.getListaBrojeva(), scena2.getCombo(), scena1.getListaImenaIPrezimena(), scena1.getCombo(), primaryStage, sceneOne);
 	}
 
 	public GrupeKontaktaCombo getGrupeKontaktaCombo() {
@@ -117,161 +128,61 @@ public class Controler {
 		this.prijatelji = prijatelji;
 	}
 
-	public ObservableList<String> saveKontakt() {
-
-		String ime = getScena2().getImeTextField().getText();
-		String prezime = getScena2().getPrezimeTextField().getText();
-		String adresa = getScena2().getAdresaTextField().getText();
-		String email = getScena2().getEmailTextField().getText();
-		String broj = getScena2().getBrojeviTextField().getText();
-
-		ArrayList<Brojevi> brojevi = new ArrayList<Brojevi>();
-
-		ArrayList<String> lista = getScena2().getListaBrojeva().getTableViewValues(scena2.getListaBrojeva());
-
-		if (!lista.isEmpty()) {
-
-			for (String brojIzTabele : lista) {
-
-				brojevi.add(new Brojevi(brojIzTabele));
-
-			}
-
-		}
-
-		if (broj != null) {
-
-			brojevi.add(new Brojevi(broj));
-
-		}
-
-		Osoba osoba = new Osoba(ime, prezime, adresa, email, brojevi);
-
-		String kojiTrazim = getScena2().getCombo().getValue().toString();
-
-		ObservableList<String> grupeLista = FXCollections.observableArrayList();
-
-		for (Kontakti kontakt : getScena2().getCombo().getKontakti()) {
-
-			grupeLista.add(kontakt.toString() + " - " + (kontakt.getKontakti().size()));
-
-			if (kontakt.toString().equals(kojiTrazim)) {
-
-				kontakt.getKontakti().add(osoba);
-
-				System.out.println(kontakt.toString());
-				System.out.println("Uspesno nasao kontakt");
-
-				System.out.println(osoba);
-
-				System.out.println(kontakt.getKontakti().size());
-
-			}
-
-		}
-
-		System.out.println("YEEESSS");
-
-		getScena2().getImeTextField().clear();
-		getScena2().getPrezimeTextField().clear();
-		getScena2().getAdresaTextField().clear();
-		getScena2().getEmailTextField().clear();
-		getScena2().getBrojeviTextField().clear();
-		getScena2().getListaBrojeva().getItems().clear();
-		getScena1().getListaImenaIPrezimena().getItems().clear();
-		/*
-		 * 
-		 * scena1.getCombo().setItems(grupeLista);
-		 * scena1.getCombo().setValue(grupeLista.get(0));
-		 */
-
-		return grupeLista;
-
+	public DodajBrojBtnEvent getDodajBtnEvent() {
+		return dodajBtnEvent;
 	}
 
-	public void dodajBroj() {
-
-		if (!getScena2().getBrojeviTextField().getText().isEmpty()) {
-			Brojevi brojevi = new Brojevi(getScena2().getBrojeviTextField().getText());
-			getScena2().getListaBrojeva().data.add(brojevi);
-			getScena2().getBrojeviTextField().clear();
-		} else {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Polje ne sme biti prazno!");
-			alert.show();
-		}
-
+	public void setDodajBtnEvent(DodajBrojBtnEvent dodajBtnEvent) {
+		this.dodajBtnEvent = dodajBtnEvent;
 	}
 
-	// ova metoda ne radi jer nam ne radi GrupeKontakata
-
-	public void prikaziBtn() {
-
-		// ova metoda nije dobra, mora da uzima vrednost iz comboboxa i da prolista sve
-		// vrednosti iz njega i doda u tabelu
-
-		// ArrayList<String> listaOsoba =
-		// getScena1().getListaImenaIPrezimena().getTableViewValues(scena1.getListaImenaIPrezimena());
-
-		ObservableList<Osoba> listaImenaIprezimena1 = FXCollections.observableArrayList();
-		
-		ObservableList<Osoba> listaImenaIprezimena2 = FXCollections.observableArrayList();
-		ObservableList<Osoba> listaImenaIprezimena3 = FXCollections.observableArrayList();
-		
-		
-		for (Kontakti kontakt : getScena2().getCombo().getKontakti()) {
-
-			System.out.println(kontakt.getKontakti().size());
-			System.out.println(kontakt.toString());
-
-		if(kontakt.toString().equals("Porodica")){
-
-				for (Osoba osoba : kontakt.getKontakti()) {
-					listaImenaIprezimena1.add(osoba);
-				}
-			}
-		
-		else if (kontakt.toString().equals("Prijatelji")){
-
-			for (Osoba osoba : kontakt.getKontakti()) {
-				
-				listaImenaIprezimena2.add(osoba);
-			}
-		}
-		else if(kontakt.toString().equals("Posao")){
-
-			for (Osoba osoba : kontakt.getKontakti()) {
-				listaImenaIprezimena3.add(osoba);
-			}
-		}
-		
-		}
-
-		
-		if(scena1.getCombo().getSelectionModel().getSelectedItem().contains("Por")) {
-			scena1.getListaImenaIPrezimena().setItems(listaImenaIprezimena1);
-		}
-		if(scena1.getCombo().getSelectionModel().getSelectedItem().contains("Pri")) {
-			scena1.getListaImenaIPrezimena().setItems(listaImenaIprezimena2);
-		}
-		if(scena1.getCombo().getSelectionModel().getSelectedItem().contains("Pos")) {
-			scena1.getListaImenaIPrezimena().setItems(listaImenaIprezimena3);
-		}
-
-		
-		
-
+	public PrikaziBtnEvent getPrikaziBtnEvent() {
+		return prikaziBtnEvent;
 	}
-	
-	
-	public void prikaziDetaljeBtn() {
-		
-	Osoba izabranaOsoba = 	getScena1().getListaImenaIPrezimena().getSelectionModel().getSelectedItem();
-	
-	getScena1().getImePrezimeTextField().setText(izabranaOsoba.getImeIPrezime());;
-	getScena1().getAdresaTextField().setText(izabranaOsoba.getAdresa());
-	getScena1().getEmailTextField().setText(izabranaOsoba.getEmail());
-	
+
+	public void setPrikaziBtnEvent(PrikaziBtnEvent prikaziBtnEvent) {
+		this.prikaziBtnEvent = prikaziBtnEvent;
 	}
+
+	public PrikaziDetaljeBtnEvent getPrikaziDetaljnijeBtnEvent() {
+		return prikaziDetaljnijeBtnEvent;
+	}
+
+	public void setPrikaziDetaljnijeBtnEvent(PrikaziDetaljeBtnEvent prikaziDetaljnijeBtnEvent) {
+		this.prikaziDetaljnijeBtnEvent = prikaziDetaljnijeBtnEvent;
+	}
+
+	public SacuvajBtnEvent getSacuvajBtnEvent() {
+		return sacuvajBtnEvent;
+	}
+
+	public void setSacuvajBtnEvent(SacuvajBtnEvent sacuvajBtnEvent) {
+		this.sacuvajBtnEvent = sacuvajBtnEvent;
+	}
+
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+	public void setPrimaryStage(Stage primaryStage) {
+		this.primaryStage = primaryStage;
+	}
+
+	public Scene getSceneOne() {
+		return sceneOne;
+	}
+
+	public void setSceneOne(Scene sceneOne) {
+		this.sceneOne = sceneOne;
+	}
+
+	public Scene getSceneTwo() {
+		return sceneTwo;
+	}
+
+	public void setSceneTwo(Scene sceneTwo) {
+		this.sceneTwo = sceneTwo;
+	}
+
 
 }

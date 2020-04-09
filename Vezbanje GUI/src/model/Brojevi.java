@@ -28,6 +28,10 @@ public class Brojevi {
 	}
 	
 	
-	
+	@Override
+	public String toString() {
+		
+		return brojevi.get();
+	}
 	
 }

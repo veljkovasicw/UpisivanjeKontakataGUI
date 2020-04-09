@@ -70,7 +70,7 @@ public class Scena2 extends BorderPane {
 		prezimeHbox = new HBox();
 		prezimeHbox.setPadding(new Insets(10,25,10,25));
 		prezimeHbox.getChildren().addAll(prezimeLabela, prezimeTextField);
-
+		
 		adresaLabela = new Label("Adresa: ");
 		adresaTextField = new TextField();
 		adresaHbox = new HBox();
@@ -95,9 +95,6 @@ public class Scena2 extends BorderPane {
 		grupeLabel = new Label("Grupe: ");
 		
 		//obrati paznju ovde 
-	
-		
-		
 		
 		
 		// do ovde 

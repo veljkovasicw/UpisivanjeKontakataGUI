@@ -8,6 +8,9 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.DodajBrojBtnEvent;
+import model.PrikaziBtnEvent;
+import model.PrikaziDetaljeBtnEvent;
+import model.SacuvajBtnEvent;
 import view.Scena1;
 import view.Scena2;
 
@@ -17,76 +20,53 @@ public class Main extends Application {
 
 		try {
 
-			// ovo kad obrises stani
-
-			
+		
 
 			Scena2 drugaScena = Controler.getInstance().getScena2();
 			
 			Scena1 prvaScena = Controler.getInstance().getScena1();
 
 			
-			Scene scene2 = new Scene(drugaScena, 400, 400);
+		
 			
-			Scene scene1 = new Scene(prvaScena, 1000, 600);
+			Scene scene1 = Controler.getInstance().getSceneOne();
+			
+			Scene scene2 = Controler.getInstance().getSceneTwo();
 
 			scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene1);
 			primaryStage.show();
 
 			
-			prvaScena.getPrikaziBtn().setOnAction(new EventHandler<ActionEvent>() {
+			Controler.getInstance().getScena1().getPrikaziBtn().setOnAction(new PrikaziBtnEvent(drugaScena.getCombo(), prvaScena.getCombo(), prvaScena.getListaImenaIPrezimena()));
+		
 
-				@Override
-				public void handle(ActionEvent event) {
-					Controler.getInstance().prikaziBtn();
-					
-				}
-			});
+			Controler.getInstance().getScena2().getDodajBtn().setOnAction(new DodajBrojBtnEvent(drugaScena.getDodajBtn(), drugaScena.getBrojeviTextField(), drugaScena.getListaBrojeva()));
+
+		
+			
+			Controler.getInstance().getScena2().getSacuvajBtn().setOnAction(new SacuvajBtnEvent(drugaScena.getImeTextField(), drugaScena.getPrezimeTextField(), drugaScena.getAdresaTextField(), drugaScena.getEmailTextField(), drugaScena.getBrojeviTextField(), drugaScena.getListaBrojeva(), drugaScena.getCombo(), prvaScena.getListaImenaIPrezimena(), prvaScena.getCombo(), primaryStage, scene1));
+			Controler.getInstance().getScena1().getDetaljnijeBtn().setOnAction(new PrikaziDetaljeBtnEvent(prvaScena.getListaImenaIPrezimena(), prvaScena.getImePrezimeTextField(), prvaScena.getAdresaTextField(), prvaScena.getEmailTextField(), prvaScena.getBrojeviTextArea()));
+
+			
+			
 			
 			prvaScena.getKreirajBtn().setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
 
+					prvaScena.getImePrezimeTextField().clear();
+					prvaScena.getAdresaTextField().clear();
+					prvaScena.getEmailTextField().clear();
+					prvaScena.getBrojeviTextArea().clear();
 					primaryStage.setScene(scene2);
 					primaryStage.show();
 
 				}
 			});
-
-			drugaScena.getDodajBtn().setOnAction(new DodajBrojBtnEvent(drugaScena.getDodajBtn(), drugaScena.getBrojeviTextField(), drugaScena.getListaBrojeva()));
-
-			drugaScena.getSacuvajBtn().setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					
-					ObservableList<String> grupeLista = Controler.getInstance().saveKontakt();
 			
-					 
-					 prvaScena.getCombo().setItems(grupeLista);
-						
-					 
-					 prvaScena.getCombo().setValue(grupeLista.get(0));
-					
-				
-					
-					
-					
-					primaryStage.setScene(scene1);
-					primaryStage.show();
-				}
-			});
 			
-			prvaScena.getDetaljnijeBtn().setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					Controler.getInstance().prikaziDetaljeBtn();
-					
-				}
-			});
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
