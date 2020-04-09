@@ -61,6 +61,7 @@ public class Main extends Application {
 					prvaScena.getBrojeviTextArea().clear();
 					primaryStage.setScene(scene2);
 					primaryStage.show();
+					
 
 				}
 			});
