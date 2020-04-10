@@ -25,8 +25,6 @@ import model.Posao;
 import model.Prijatelji;
 
 public class Scena1 extends BorderPane {
-
-
 	//top
 	//sa ovim comboboxom radi ali nam je potreban JEDINSTVENI COMBO BOX 
 	private ComboBox<String> combo;
@@ -35,13 +33,10 @@ public class Scena1 extends BorderPane {
 	private GrupeKontaktaCombo comboBox;
 	private Button prikaziBtn;
 	private HBox topHBox;
-
 	//left
 	private ListaImenaIPrezimena listaImenaIPrezimena;
-
 	//center
 	private Button detaljnijeBtn;
-
 	//bottom
 	private Button kreirajBtn;
 	
@@ -50,21 +45,16 @@ public class Scena1 extends BorderPane {
 	private Label imePrezimeLabela;
 	private TextField imePrezimeTextField;
 	private HBox imePrezimeHbox;
-
 	private Label adresaLabela;
 	private TextField adresaTextField;
 	private HBox adresaHbox;
-
 	private Label emailLabela;
 	private TextField emailTextField;
 	private HBox emailHbox;
-
 	private Label brojeviLabela;
 	private TextArea brojeviTextArea;
 	private HBox brojeviHbox;
-
 	private VBox rightVBox;
-
 	public Scena1() {
 		
 		
@@ -110,7 +100,6 @@ public class Scena1 extends BorderPane {
 //		
 //		rightVBox.getChildren().addAll(imePrezimeHbox,adresaHbox,emailHbox,brojeviHbox);
 //		setRight(rightVBox);
-
 	}
 	public HBox getHboxTop() {
 		prikaziBtn = new Button("Prikazi");
@@ -123,7 +112,6 @@ public class Scena1 extends BorderPane {
 			kontakti.add(Prijatelji.getInstance());
 			kontakti.add(Posao.getInstance());
 			
-
 			grupeLista = FXCollections.observableArrayList(kontakti.get(0).toString() + " - " +kontakti.get(0).getKontakti().size(),kontakti.get(1).toString()+ " - " +kontakti.get(1).getKontakti().size(),kontakti.get(2).toString()+ " - " +kontakti.get(2).getKontakti().size() );
 			
 		//ovaj combobox je tu samo da bi imali combobox na sceni1 , nece cak ni da se uveca broj kontakata 
@@ -137,7 +125,6 @@ public class Scena1 extends BorderPane {
 	//	comboBox = GrupeKontaktaCombo.getInstance();
 	
 		topHBox.getChildren().addAll(combo, prikaziBtn);
-
 	
 		return topHBox;
 	}
@@ -148,22 +135,6 @@ public class Scena1 extends BorderPane {
 		gridSaElementima.setHgap(10);
 	
 		//1 red
-
-		
-		
-		
-		setTop(topHBox);
-		
-		listaImenaIPrezimena= new ListaImenaIPrezimena();
-		setLeft(listaImenaIPrezimena);
-		
-		detaljnijeBtn = new Button("Prikazi detaljnije");
-		setCenter(detaljnijeBtn);
-		
-		kreirajBtn= new Button("Kreiraj novi");
-		setBottom(kreirajBtn);
-		
-
 		imePrezimeLabela = new Label("Ime i prezime: ");
 		imePrezimeTextField = new TextField();
 		imePrezimeTextField.setPrefWidth(200);
@@ -199,169 +170,125 @@ public class Scena1 extends BorderPane {
 		
 		return gridSaElementima;
 	} 
-
 	public GrupeKontaktaCombo getComboBox() {
 		return comboBox;
 	}
-
 	public void setComboBox(GrupeKontaktaCombo comboBox) {
 		this.comboBox = comboBox;
 	}
-
 	public ComboBox<String> getCombo() {
 		return combo;
 	}
-
-
-
 	public void setCombo(GrupeKontaktaCombo combo) {
 		this.combo = combo;
 	}
-
 	public Button getPrikaziBtn() {
 		return prikaziBtn;
 	}
-
 	public void setPrikaziBtn(Button prikaziBtn) {
 		this.prikaziBtn = prikaziBtn;
 	}
-
 	public HBox getTopHBox() {
 		return topHBox;
 	}
-
 	public void setTopHBox(HBox topHBox) {
 		this.topHBox = topHBox;
 	}
-
 	
-
 	public ListaImenaIPrezimena getListaImenaIPrezimena() {
 		return listaImenaIPrezimena;
 	}
-
 	public void setListaImenaIPrezimena(ListaImenaIPrezimena listaImenaIPrezimena) {
 		this.listaImenaIPrezimena = listaImenaIPrezimena;
 	}
-
 	public Button getDetaljnijeBtn() {
 		return detaljnijeBtn;
 	}
-
 	public void setDetaljnijeBtn(Button detaljnijeBtn) {
 		this.detaljnijeBtn = detaljnijeBtn;
 	}
-
 	public Button getKreirajBtn() {
 		return kreirajBtn;
 	}
-
 	public void setKreirajBtn(Button kreirajBtn) {
 		this.kreirajBtn = kreirajBtn;
 	}
-
 	public Label getImePrezimeLabela() {
 		return imePrezimeLabela;
 	}
-
 	public void setImePrezimeLabela(Label imePrezimeLabela) {
 		this.imePrezimeLabela = imePrezimeLabela;
 	}
-
 	public TextField getImePrezimeTextField() {
 		return imePrezimeTextField;
 	}
-
 	public void setImePrezimeTextField(TextField imePrezimeTextField) {
 		this.imePrezimeTextField = imePrezimeTextField;
 	}
-
 	public HBox getImePrezimeHbox() {
 		return imePrezimeHbox;
 	}
-
 	public void setImePrezimeHbox(HBox imePrezimeHbox) {
 		this.imePrezimeHbox = imePrezimeHbox;
 	}
-
 	public Label getAdresaLabela() {
 		return adresaLabela;
 	}
-
 	public void setAdresaLabela(Label adresaLabela) {
 		this.adresaLabela = adresaLabela;
 	}
-
 	public TextField getAdresaTextField() {
 		return adresaTextField;
 	}
-
 	public void setAdresaTextField(TextField adresaTextField) {
 		this.adresaTextField = adresaTextField;
 	}
-
 	public HBox getAdresaHbox() {
 		return adresaHbox;
 	}
-
 	public void setAdresaHbox(HBox adresaHbox) {
 		this.adresaHbox = adresaHbox;
 	}
-
 	public Label getEmailLabela() {
 		return emailLabela;
 	}
-
 	public void setEmailLabela(Label emailLabela) {
 		this.emailLabela = emailLabela;
 	}
-
 	public TextField getEmailTextField() {
 		return emailTextField;
 	}
-
 	public void setEmailTextField(TextField emailTextField) {
 		this.emailTextField = emailTextField;
 	}
-
 	public HBox getEmailHbox() {
 		return emailHbox;
 	}
-
 	public void setEmailHbox(HBox emailHbox) {
 		this.emailHbox = emailHbox;
 	}
-
 	public Label getBrojeviLabela() {
 		return brojeviLabela;
 	}
-
 	public void setBrojeviLabela(Label brojeviLabela) {
 		this.brojeviLabela = brojeviLabela;
 	}
-
 	public TextArea getBrojeviTextArea() {
 		return brojeviTextArea;
 	}
-
 	public void setBrojeviTextArea(TextArea brojeviTextArea) {
 		this.brojeviTextArea = brojeviTextArea;
 	}
-
 	public HBox getBrojeviHbox() {
 		return brojeviHbox;
 	}
-
 	public void setBrojeviHbox(HBox brojeviHbox) {
 		this.brojeviHbox = brojeviHbox;
 	}
-
 	public VBox getRightVBox() {
 		return rightVBox;
 	}
-
 	public void setRightVBox(VBox rightVBox) {
 		this.rightVBox = rightVBox;
 	}
-
 }
