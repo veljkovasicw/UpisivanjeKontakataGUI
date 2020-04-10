@@ -26,11 +26,7 @@ import model.Prijatelji;
 
 public class Scena1 extends BorderPane {
 
-<<<<<<< HEAD
-=======
-	// Veljko branch promena
-	
->>>>>>> refs/heads/Veljko-branch
+
 	//top
 	//sa ovim comboboxom radi ali nam je potreban JEDINSTVENI COMBO BOX 
 	private ComboBox<String> combo;
@@ -127,17 +123,7 @@ public class Scena1 extends BorderPane {
 			kontakti.add(Prijatelji.getInstance());
 			kontakti.add(Posao.getInstance());
 			
-<<<<<<< HEAD
-=======
-			// ovo je je lista svih kontakta iz porodice, posao , prijatelji   		
-			//odavde izvlacimo vrednosti koje ispisujemo u tabelu
-			
-		/* kontakti.get(0).getKontakti() */
-			
-			// ovo je je lista svih kontakta iz porodice, posao , prijatelji  
-			
-			
->>>>>>> refs/heads/Veljko-branch
+
 			grupeLista = FXCollections.observableArrayList(kontakti.get(0).toString() + " - " +kontakti.get(0).getKontakti().size(),kontakti.get(1).toString()+ " - " +kontakti.get(1).getKontakti().size(),kontakti.get(2).toString()+ " - " +kontakti.get(2).getKontakti().size() );
 			
 		//ovaj combobox je tu samo da bi imali combobox na sceni1 , nece cak ni da se uveca broj kontakata 
@@ -151,7 +137,7 @@ public class Scena1 extends BorderPane {
 	//	comboBox = GrupeKontaktaCombo.getInstance();
 	
 		topHBox.getChildren().addAll(combo, prikaziBtn);
-<<<<<<< HEAD
+
 	
 		return topHBox;
 	}
@@ -162,7 +148,7 @@ public class Scena1 extends BorderPane {
 		gridSaElementima.setHgap(10);
 	
 		//1 red
-=======
+
 		
 		
 		
@@ -177,7 +163,7 @@ public class Scena1 extends BorderPane {
 		kreirajBtn= new Button("Kreiraj novi");
 		setBottom(kreirajBtn);
 		
->>>>>>> refs/heads/Veljko-branch
+
 		imePrezimeLabela = new Label("Ime i prezime: ");
 		imePrezimeTextField = new TextField();
 		imePrezimeTextField.setPrefWidth(200);
