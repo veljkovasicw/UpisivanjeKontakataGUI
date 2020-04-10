@@ -25,7 +25,12 @@ import model.Posao;
 import model.Prijatelji;
 
 public class Scena1 extends BorderPane {
+<<<<<<< HEAD
 	
+=======
+
+// Veljko branch promena
+>>>>>>> refs/heads/master
 	//top
 	//sa ovim comboboxom radi ali nam je potreban JEDINSTVENI COMBO BOX 
 	private ComboBox<String> combo;
