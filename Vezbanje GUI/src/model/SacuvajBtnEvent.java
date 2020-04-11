@@ -168,14 +168,13 @@ public class SacuvajBtnEvent implements EventHandler<javafx.event.ActionEvent> {
 
 		comboScena1.setValue(grupeLista.get(0));
 
-		primaryStage.setScene(prvaScene);
-		
-		primaryStage.show();
+	
 
 			primaryStage.setScene(prvaScene);
 			primaryStage.show();
 			
-		} else if (!matcherIme.matches()) {
+		} 
+		else if (!matcherIme.matches()) {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			alert.setContentText("Ime nije uneto u odgovarajucem formatu!");
 			alert.show();
@@ -201,8 +200,7 @@ public class SacuvajBtnEvent implements EventHandler<javafx.event.ActionEvent> {
 			alert.show();
 		}
 		
-			primaryStage.setScene(prvaScene);
-			primaryStage.show();
+			
 			
 		} 
 		
