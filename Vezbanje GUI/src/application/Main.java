@@ -74,9 +74,7 @@ public class Main extends Application {
 			scene2.getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
 				
 				@Override
-				public void handle(ActionEvent event) {
-
-					
+				public void handle(WindowEvent event) {
 					
 					Controler.getInstance().getPrimaryStage().setScene(scene1);
 					Controler.getInstance().getPrimaryStage().show();
