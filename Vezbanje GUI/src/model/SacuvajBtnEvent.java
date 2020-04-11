@@ -87,7 +87,7 @@ public class SacuvajBtnEvent implements EventHandler<javafx.event.ActionEvent> {
 
 		for (Kontakti kontakt : comboScena2.getKontakti()) {
 
-			grupeLista.add(kontakt.toString() + " - " + (kontakt.getKontakti().size()));
+			
 
 			if (kontakt.toString().equals(kojiTrazim)) {
 
@@ -101,6 +101,7 @@ public class SacuvajBtnEvent implements EventHandler<javafx.event.ActionEvent> {
 				System.out.println(kontakt.getKontakti().size());
 
 			}
+			grupeLista.add(kontakt.toString() + " - " + (kontakt.getKontakti().size()));
 
 		}
 
@@ -126,6 +127,7 @@ public class SacuvajBtnEvent implements EventHandler<javafx.event.ActionEvent> {
 		comboScena1.setValue(grupeLista.get(0));
 
 		primaryStage.setScene(prvaScene);
+		
 		primaryStage.show();
 
 	}

@@ -102,6 +102,8 @@ public class Scena2 extends GridPane {
         getChildren().addAll(imeLabela,imeTextField,prezimeLabela,prezimeTextField,
         		adresaLabela,adresaTextField,emailLabela,emailTextField,brojeviLabela,
                 brojeviTextField,dodajBtn,listaBrojeva,grupeLabel,combo2,sacuvajBtn); 
+        
+     
                 
                 
 	}

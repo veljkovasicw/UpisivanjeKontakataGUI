@@ -21,5 +21,5 @@ public class ListaKontakta {
 		
 		grupeLista = FXCollections.observableArrayList(kontakti.get(0).toString(),kontakti.get(1).toString(),kontakti.get(2).toString() );
 		
-	}
+	}	
 }

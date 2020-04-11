@@ -1,8 +1,12 @@
 package contoler;
 
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 import model.DodajBrojBtnEvent;
+import model.KreirajBtnEvent;
 import model.Porodica;
 import model.Posao;
 import model.Prijatelji;
@@ -48,6 +52,7 @@ public class Controler {
 	private PrikaziBtnEvent prikaziBtnEvent;
 	private PrikaziDetaljeBtnEvent prikaziDetaljnijeBtnEvent;
 	private SacuvajBtnEvent sacuvajBtnEvent;
+	private KreirajBtnEvent kreirajBtnEvent;
 	
 	private Stage primaryStage = new Stage();
 	private Scene sceneOne;
@@ -61,6 +66,7 @@ public class Controler {
 		scena2 = new Scena2();
 		sceneOne = new Scene(scena1, 1000, 600);
 		sceneTwo =  new Scene(scena2, 400, 400);
+		
 		porodica = Porodica.getInstance();
 		posao = Posao.getInstance();
 		prijatelji = Prijatelji.getInstance();
@@ -69,6 +75,7 @@ public class Controler {
 		prikaziBtnEvent = new PrikaziBtnEvent(scena2.getCombo(), scena1.getCombo(), scena1.getListaImenaIPrezimena());
 		prikaziDetaljnijeBtnEvent= new PrikaziDetaljeBtnEvent(scena1.getListaImenaIPrezimena(), scena1.getImePrezimeTextField(),scena1.getAdresaTextField(), scena1.getEmailTextField(), scena1.getBrojeviTextArea());
 		sacuvajBtnEvent = new SacuvajBtnEvent(scena2.getImeTextField(), scena2.getPrezimeTextField(), scena2.getAdresaTextField(), scena2.getEmailTextField(), scena2.getBrojeviTextField(), scena2.getListaBrojeva(), scena2.getCombo(), scena1.getListaImenaIPrezimena(), scena1.getCombo(), primaryStage, sceneOne);
+		kreirajBtnEvent = new KreirajBtnEvent(scena1.getImePrezimeTextField(), scena1.getAdresaTextField(), scena1.getEmailTextField(), scena1.getBrojeviTextArea(), primaryStage, sceneTwo);
 	}
 
 	public GrupeKontaktaCombo getGrupeKontaktaCombo() {
@@ -182,6 +189,14 @@ public class Controler {
 
 	public void setSceneTwo(Scene sceneTwo) {
 		this.sceneTwo = sceneTwo;
+	}
+
+	public KreirajBtnEvent getKreirajBtnEvent() {
+		return kreirajBtnEvent;
+	}
+
+	public void setKreirajBtnEvent(KreirajBtnEvent kreirajBtnEvent) {
+		this.kreirajBtnEvent = kreirajBtnEvent;
 	}
 
 
