@@ -59,70 +59,109 @@ public class SacuvajBtnEvent implements EventHandler<javafx.event.ActionEvent> {
 		String email = emailTextField.getText();
 		String broj = brojeviTextField.getText();
 
-		ArrayList<Brojevi> brojevi = new ArrayList<Brojevi>();
+		// ovde definisem regexse za svaki String
+		String regexImeIliPrezime = "([A-Z][a-z]*)";
+		String regexAdresa = "([A-Z][a-z]*)\\s([A-Za-z]*)?\\s?([A-Za-z]*)?\\s?\\d+";
+		String regexEmail = "(?:(?:\\r\\n)?[ \\t])*(?:(?:(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*\\<(?:(?:\\r\\n)?[ \\t])*(?:@(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*(?:,@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*)*:(?:(?:\\r\\n)?[ \\t])*)?(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*\\>(?:(?:\\r\\n)?[ \\t])*)|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*:(?:(?:\\r\\n)?[ \\t])*(?:(?:(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*\\<(?:(?:\\r\\n)?[ \\t])*(?:@(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*(?:,@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*)*:(?:(?:\\r\\n)?[ \\t])*)?(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*\\>(?:(?:\\r\\n)?[ \\t])*)(?:,\\s*(?:(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*\\<(?:(?:\\r\\n)?[ \\t])*(?:@(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*(?:,@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*)*:(?:(?:\\r\\n)?[ \\t])*)?(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*\\>(?:(?:\\r\\n)?[ \\t])*))*)?;\\s*)";
+		String regexBroj = "^\\+(?:[0-9] ?){9,13}[0-9]$";
 
-		ArrayList<String> lista = listaBrojeva.getTableViewValues(listaBrojeva);
+		Pattern patternImeIliPrezime = Pattern.compile(regexImeIliPrezime);
+		Pattern patternAdresa = Pattern.compile(regexAdresa);
+		Pattern patternEmail = Pattern.compile(regexEmail);
+		Pattern patternBroj = Pattern.compile(regexBroj);
 
-		if (!lista.isEmpty()) {
+		Matcher matcherIme = patternImeIliPrezime.matcher(ime);
+		Matcher matcherPrezime = patternImeIliPrezime.matcher(prezime);
+		Matcher matcherAdresa = patternAdresa.matcher(adresa);
+		Matcher matcherEmail = patternEmail.matcher(email);
+		Matcher matcherBroj = patternBroj.matcher(broj);
 
-			for (String brojIzTabele : lista) {
+		// onda radim proveru sa if string != matachuje sa regexom break!?
+		if (matcherIme.matches()) {
+			System.out.println("Ime je ok!");
+		}
+		if (matcherPrezime.matches()) {
+			System.out.println("Prezime je ok!");
+		}
+		if (matcherAdresa.matches()) {
+			System.out.println("Adresa je ok!");
+		}
+		if (matcherEmail.matches()) {
+			System.out.println("Email je ok!");
+		}
+		if (matcherBroj.matches()) {
+			System.out.println("Broj je ok!");
+		}
+		if (matcherIme.matches() && matcherPrezime.matches() && matcherAdresa.matches() && matcherEmail.matches()
+				&& (matcherBroj.matches() || brojeviTextField.getText().isEmpty())) {
+			ArrayList<Brojevi> brojevi = new ArrayList<Brojevi>();
 
-				brojevi.add(new Brojevi(brojIzTabele));
+			ArrayList<String> lista = listaBrojeva.getTableViewValues(listaBrojeva);
+
+			if (!lista.isEmpty()) {
+
+				for (String brojIzTabele : lista) {
+
+					brojevi.add(new Brojevi(brojIzTabele));
+
+				}
 
 			}
 
-		}
+			if (broj != null) {
 
-		if (broj != null) {
+				brojevi.add(new Brojevi(broj));
 
-			brojevi.add(new Brojevi(broj));
+			}
 
-		}
+			Osoba osoba = new Osoba(ime, prezime, adresa, email, brojevi);
 
-		Osoba osoba = new Osoba(ime, prezime, adresa, email, brojevi);
+			String kojiTrazim = comboScena2.getValue().toString();
 
-		String kojiTrazim = comboScena2.getValue().toString();
+			ObservableList<String> grupeLista = FXCollections.observableArrayList();
 
-		ObservableList<String> grupeLista = FXCollections.observableArrayList();
-
-		for (Kontakti kontakt : comboScena2.getKontakti()) {
+			for (Kontakti kontakt : comboScena2.getKontakti()) {
 
 			
 
-			if (kontakt.toString().equals(kojiTrazim)) {
+			
+			
+				if (kontakt.toString().equals(kojiTrazim)) {
 
-				kontakt.getKontakti().add(osoba);
+					kontakt.getKontakti().add(osoba);
 
-				System.out.println(kontakt.toString());
-				System.out.println("Uspesno nasao kontakt");
+					System.out.println(kontakt.toString());
+					System.out.println("Uspesno nasao kontakt");
 
-				System.out.println(osoba);
+					System.out.println(osoba);
 
-				System.out.println(kontakt.getKontakti().size());
+					System.out.println(kontakt.getKontakti().size());
+
+				}
+				grupeLista.add(kontakt.toString() + " - " + (kontakt.getKontakti().size()));
 
 			}
-			grupeLista.add(kontakt.toString() + " - " + (kontakt.getKontakti().size()));
 
-		}
+			System.out.println("YEEESSS");
 
-		System.out.println("YEEESSS");
+			imeTextField.clear();
+			prezimeTextField.clear();
+			adresaTextField.clear();
+			emailTextField.clear();
+			brojeviTextField.clear();
+			listaBrojeva.getItems().clear();
+			listaImenaIPrezimena.getItems().clear();
+			/*
+			 * 
+			 * scena1.getCombo().setItems(grupeLista);
+			 * scena1.getCombo().setValue(grupeLista.get(0));
+			 */
 
-		imeTextField.clear();
-		prezimeTextField.clear();
-		adresaTextField.clear();
-		emailTextField.clear();
-		brojeviTextField.clear();
-		listaBrojeva.getItems().clear();
-		listaImenaIPrezimena.getItems().clear();
-		/*
-		 * 
-		 * scena1.getCombo().setItems(grupeLista);
-		 * scena1.getCombo().setValue(grupeLista.get(0));
-		 */
+			/* return grupeLista; */
 
-		/* return grupeLista; */
+			comboScena1.setItems(grupeLista);
 
-		comboScena1.setItems(grupeLista);
+			comboScena1.setValue(grupeLista.get(0));
 
 		comboScena1.setValue(grupeLista.get(0));
 
@@ -130,6 +169,122 @@ public class SacuvajBtnEvent implements EventHandler<javafx.event.ActionEvent> {
 		
 		primaryStage.show();
 
+			primaryStage.setScene(prvaScene);
+			primaryStage.show();
+			
+		} else if (!matcherIme.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Ime nije uneto u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherPrezime.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Prezime nije uneto u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherAdresa.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Adresa nije uneta u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherEmail.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Email adresa nije uneta u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherBroj.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Broj nije unet u odgovarajucem formatu!");
+			alert.show();
+		}
+		
+			primaryStage.setScene(prvaScene);
+			primaryStage.show();
+			
+		} else if (!matcherIme.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Ime nije uneto u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherPrezime.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Prezime nije uneto u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherAdresa.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Adresa nije uneta u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherEmail.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Email adresa nije uneta u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherBroj.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Broj nije unet u odgovarajucem formatu!");
+			alert.show();
+		}
+		
+			primaryStage.setScene(prvaScene);
+			primaryStage.show();
+			
+		} else if (!matcherIme.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Ime nije uneto u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherPrezime.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Prezime nije uneto u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherAdresa.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Adresa nije uneta u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherEmail.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Email adresa nije uneta u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherBroj.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Broj nije unet u odgovarajucem formatu!");
+			alert.show();
+		}
+		
+			primaryStage.setScene(prvaScene);
+			primaryStage.show();
+			
+		} else if (!matcherIme.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Ime nije uneto u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherPrezime.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Prezime nije uneto u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherAdresa.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Adresa nije uneta u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherEmail.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Email adresa nije uneta u odgovarajucem formatu!");
+			alert.show();
+		} 
+		else if (!matcherBroj.matches()) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Broj nije unet u odgovarajucem formatu!");
+			alert.show();
+		}
+		
 	}
 
 }
