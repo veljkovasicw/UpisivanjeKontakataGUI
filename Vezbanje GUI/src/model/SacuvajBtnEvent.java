@@ -1,12 +1,15 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -201,90 +204,8 @@ public class SacuvajBtnEvent implements EventHandler<javafx.event.ActionEvent> {
 			primaryStage.setScene(prvaScene);
 			primaryStage.show();
 			
-		} else if (!matcherIme.matches()) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Ime nije uneto u odgovarajucem formatu!");
-			alert.show();
 		} 
-		else if (!matcherPrezime.matches()) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Prezime nije uneto u odgovarajucem formatu!");
-			alert.show();
-		} 
-		else if (!matcherAdresa.matches()) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Adresa nije uneta u odgovarajucem formatu!");
-			alert.show();
-		} 
-		else if (!matcherEmail.matches()) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Email adresa nije uneta u odgovarajucem formatu!");
-			alert.show();
-		} 
-		else if (!matcherBroj.matches()) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Broj nije unet u odgovarajucem formatu!");
-			alert.show();
-		}
-		
-			primaryStage.setScene(prvaScene);
-			primaryStage.show();
-			
-		} else if (!matcherIme.matches()) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Ime nije uneto u odgovarajucem formatu!");
-			alert.show();
-		} 
-		else if (!matcherPrezime.matches()) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Prezime nije uneto u odgovarajucem formatu!");
-			alert.show();
-		} 
-		else if (!matcherAdresa.matches()) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Adresa nije uneta u odgovarajucem formatu!");
-			alert.show();
-		} 
-		else if (!matcherEmail.matches()) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Email adresa nije uneta u odgovarajucem formatu!");
-			alert.show();
-		} 
-		else if (!matcherBroj.matches()) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Broj nije unet u odgovarajucem formatu!");
-			alert.show();
-		}
-		
-			primaryStage.setScene(prvaScene);
-			primaryStage.show();
-			
-		} else if (!matcherIme.matches()) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Ime nije uneto u odgovarajucem formatu!");
-			alert.show();
-		} 
-		else if (!matcherPrezime.matches()) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Prezime nije uneto u odgovarajucem formatu!");
-			alert.show();
-		} 
-		else if (!matcherAdresa.matches()) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Adresa nije uneta u odgovarajucem formatu!");
-			alert.show();
-		} 
-		else if (!matcherEmail.matches()) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Email adresa nije uneta u odgovarajucem formatu!");
-			alert.show();
-		} 
-		else if (!matcherBroj.matches()) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setContentText("Broj nije unet u odgovarajucem formatu!");
-			alert.show();
-		}
 		
 	}
 
-}
+
